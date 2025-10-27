@@ -36,6 +36,12 @@ registerExtendRouter()
 
 registerInterceptorRouter()
 
+registerConfigRouter()
+
+registerCancelRouter()
+
+registerCancelRouter()
+
 app.use(router)
 
 const port = process.env.PORT || 8080
@@ -139,7 +145,27 @@ function registerExtendRouter () {
 }
 
 function registerInterceptorRouter() {
-  router.get('/interceptor/get', function(req, res) {
-    res.end('hello')
+  router.get('/interceptor/get', function (req, res) {
+    res.setHeader('Content-Type', 'text/plain')
+   res.end('hello')
+  })
+}
+function registerConfigRouter() {
+  router.post('/config/post', function(req, res) {
+    res.json(req.body)
+  })
+}
+function registerCancelRouter() {
+  router.get('/cancel/get', function(req, res) {
+    setTimeout(() => {
+      res.json('hello')
+    }, 1000);
+  })
+}
+function registerCancelRouter() {
+  router.post('/cancel/post', function(req, res) {
+    setTimeout(() => {
+      res.json('hello')
+    }, 1000)
   })
 }
